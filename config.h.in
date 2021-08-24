@@ -1,0 +1,2 @@
+#define pragma_VERSION_MAJOR @pragma_VERSION_MAJOR@
+#define pragma_VERSION_MINOR @pragma_VERSION_MINOR@
