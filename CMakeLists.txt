@@ -3,7 +3,7 @@ project(pragma VERSION 1.0)
 
 # Generate a config.h file with some settings like DEBUG etc...
 configure_file(config.h.in config.h)
-add_executable(${PROJECT_NAME} src/main.cpp src/engine.cpp src/valivali.cpp src/vulkanDevice.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/engine.cpp src/vulkanValidation.cpp src/vulkanDevice.cpp)
 
 
 target_include_directories(${PROJECT_NAME} PUBLIC src/headers/)
