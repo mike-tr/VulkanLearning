@@ -3,10 +3,9 @@ project(pragma VERSION 1.0)
 
 # Generate a config.h file with some settings like DEBUG etc...
 configure_file(config.h.in config.h)
-add_executable(${PROJECT_NAME} src/main.cpp src/engine.cpp src/vulkanValidation.cpp src/vulkanDevice.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/engine.cpp src/vulkanDevice.cpp)
 
-
-target_include_directories(${PROJECT_NAME} PUBLIC src/headers/)
+target_include_directories(${PROJECT_NAME} PUBLIC src/)
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_DIR})
 
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
@@ -39,7 +38,12 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE ${PROJECT_SOURCE_DIR}/external/glfw/include
 )
 
-target_link_libraries(${PROJECT_NAME} Vulkan::Vulkan glm glfw)
+add_subdirectory(internal/vkValidate)
+target_include_directories(${PROJECT_NAME} PUBLIC ${vkVIncludeDir})
+
+target_link_libraries(${PROJECT_NAME} Vulkan::Vulkan glm glfw vkValidate)
+
+message(STATUS "test")
 
 # uncomment to have install
 # install(TARGETS ${PROJECT_NAME} DESTINATION ${CMAKE_CURRENT_SOURCE_DIR})

@@ -1,5 +1,4 @@
-#include "headers/engine.hpp"
-#include "headers/validationLayer.hpp"
+#include "headers/vulkanValidation.hpp"
 #include <cstring>
 #include <vector>
 
@@ -28,7 +27,7 @@ void checkRequiredAreSupportedExtensions() {
     const char **glfwNeededExtensions = glfwGetRequiredInstanceExtensions(&required_extrensions_count);
 
     // check if all the required extensions are supported!
-    //cout << "Check if all required extensions are supported : " << required_extrensions_count << endl;
+    // cout << "Check if all required extensions are supported : " << required_extrensions_count << endl;
     for (uint16_t i = 0; i < required_extrensions_count; i++) {
         bool supported = false;
         //cout << "\t" << glfwNeededExtensions[i] << endl;
