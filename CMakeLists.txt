@@ -3,8 +3,13 @@ project(pragma VERSION 1.0)
 
 # Generate a config.h file with some settings like DEBUG etc...
 configure_file(config.h.in config.h)
-add_executable(${PROJECT_NAME} src/main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp src/engine.cpp src/valivali.cpp src/vulkanDevice.cpp)
+
+
+target_include_directories(${PROJECT_NAME} PUBLIC src/headers/)
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_DIR})
+
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
 # Download all git submodules
 find_package(Git QUIET)
