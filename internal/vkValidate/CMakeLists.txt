@@ -1,6 +1,9 @@
 set(proj vkValidate)
+set(includeDir ${proj}IncludeDirs)
+
 add_library(${proj} src/vulkanValidation.cpp)
 
+target_compile_features(${proj} PRIVATE cxx_std_20)
 target_include_directories(${proj} PUBLIC src/)
 
 #message(STATUS "='${Vulkan_INCLUDE_DIRS}'")
@@ -14,7 +17,7 @@ target_link_libraries(${proj} Vulkan::Vulkan glm glfw)
 
 # list(APPEND vkValidateIncludes src/headers/vulkanValidation.hpp)
 
-set (vkVIncludeDir ${CMAKE_CURRENT_SOURCE_DIR}/src/ PARENT_SCOPE) 
+set (${includeDir} ${CMAKE_CURRENT_SOURCE_DIR}/src/ PARENT_SCOPE) 
 
 
 # message(STATUS "='${vkValidateIncludes}'")

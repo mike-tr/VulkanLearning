@@ -3,7 +3,7 @@ project(pragma VERSION 1.0)
 
 # Generate a config.h file with some settings like DEBUG etc...
 configure_file(config.h.in config.h)
-add_executable(${PROJECT_NAME} src/main.cpp src/engine.cpp src/vulkanDevice.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp)
 
 target_include_directories(${PROJECT_NAME} PUBLIC src/)
 target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_DIR})
@@ -39,9 +39,11 @@ target_include_directories(${PROJECT_NAME}
 )
 
 add_subdirectory(internal/vkValidate)
-target_include_directories(${PROJECT_NAME} PUBLIC ${vkVIncludeDir})
+add_subdirectory(internal/vkEngine)
+target_include_directories(${PROJECT_NAME} PUBLIC ${vkValidateIncludeDirs})
+target_include_directories(${PROJECT_NAME} PUBLIC ${vkEngineIncludeDirs})
 
-target_link_libraries(${PROJECT_NAME} Vulkan::Vulkan glm glfw vkValidate)
+target_link_libraries(${PROJECT_NAME} Vulkan::Vulkan glm glfw vkValidate vkEngine)
 
 message(STATUS "test")
 
