@@ -21,15 +21,17 @@ void GEngine::initWindow() {
     glfwInit();
     glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
     glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
-    window = glfwCreateWindow(this->width, this->height, "Vulkan", nullptr, nullptr);
+    this->window = glfwCreateWindow(this->width, this->height, "Vulkan", nullptr, nullptr);
 }
 
 void GEngine::initVulkan() {
-    linkVulkan();
-    setupDebugMessenger();
-    createSurface();
-    pickPhysicalDevice();
-    createLogicalDevice();
+    this->linkVulkan();
+    this->setupDebugMessenger();
+    this->createSurface();
+    this->pickPhysicalDevice();
+    this->createLogicalDevice();
+    this->createSwapChain();
+    this->createImageViews();
 }
 
 void GEngine::linkVulkan() {
@@ -79,6 +81,10 @@ void GEngine::mainLoop() {
 }
 
 void GEngine::cleanup() {
+    for (auto imageView : swapChainImageViews) {
+        vkDestroyImageView(device, imageView, nullptr);
+    }
+    vkDestroySwapchainKHR(this->device, this->swapChain, nullptr);
     vkDestroyDevice(this->device, nullptr);
     if (vkValidate::enable) {
         vkValidate::DestroyDebugUtilsMessengerEXT(this->instance, this->debugMessenger, nullptr);

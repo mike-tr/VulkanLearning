@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <stdexcept>
+#include <vector>
 
 class GEngine {
 public:
@@ -25,6 +26,13 @@ private:
     VkQueue graphicQueue;
     VkQueue presentQueue;
 
+    // SwapChain
+    VkSwapchainKHR swapChain;
+    VkFormat swapChainImageFormat;
+    VkExtent2D swapChainExtent;
+    std::vector<VkImage> swapChainImages;
+    std::vector<VkImageView> swapChainImageViews;
+
     static int kek;
 
     void initWindow();
@@ -37,4 +45,6 @@ private:
     void pickPhysicalDevice();
     void createLogicalDevice();
     void createSurface();
+    void createSwapChain();
+    void createImageViews();
 };

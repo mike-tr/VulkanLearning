@@ -16,4 +16,7 @@ struct SwapChainSupportDetails {
 };
 
 SwapChainSupportDetails querySwapChainSupport(VkPhysicalDevice device, const VkSurfaceKHR &surface);
+VkSurfaceFormatKHR chooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR> &availableFormats);
+VkPresentModeKHR chooseSwapPresentMode(const std::vector<VkPresentModeKHR> &availablePresentModes);
+VkExtent2D chooseSwapExtent(GLFWwindow *window, const VkSurfaceCapabilitiesKHR &capabilities);
 } // namespace vkWSIHelper
