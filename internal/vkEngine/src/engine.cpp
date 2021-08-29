@@ -27,6 +27,7 @@ void GEngine::initWindow() {
 void GEngine::initVulkan() {
     linkVulkan();
     setupDebugMessenger();
+    createSurface();
     pickPhysicalDevice();
     createLogicalDevice();
 }
@@ -82,6 +83,7 @@ void GEngine::cleanup() {
     if (vkValidate::enable) {
         vkValidate::DestroyDebugUtilsMessengerEXT(this->instance, this->debugMessenger, nullptr);
     }
+    vkDestroySurfaceKHR(this->instance, surface, nullptr);
     vkDestroyInstance(this->instance, nullptr);
     glfwDestroyWindow(this->window);
     glfwTerminate();

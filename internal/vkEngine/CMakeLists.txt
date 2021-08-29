@@ -1,7 +1,7 @@
 set(proj vkEngine)
 set(includeDir ${proj}IncludeDirs)
 
-add_library(${proj} src/engine.cpp src/vulkanDevice.cpp)
+add_library(${proj} src/engine.cpp src/vulkanDevice.cpp src/vulkanWSI.cpp)
 target_compile_features(${proj} PRIVATE cxx_std_20)
 
 target_include_directories(${proj} PUBLIC src/)

@@ -19,7 +19,11 @@ private:
     VkDebugUtilsMessengerEXT debugMessenger;
     VkPhysicalDevice physicalDevice;
     VkDevice device;
+    VkSurfaceKHR surface;
+
+    // Queues
     VkQueue graphicQueue;
+    VkQueue presentQueue;
 
     static int kek;
 
@@ -32,4 +36,5 @@ private:
     void setupDebugMessenger();
     void pickPhysicalDevice();
     void createLogicalDevice();
+    void createSurface();
 };

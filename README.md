@@ -1,4 +1,8 @@
-this is my final setup for vulkan.
+## Just a repo where i follow the following vulkan tutorial, with slight difference to project structure.
+https://vulkan-tutorial.com/Introduction
+
+
+# From template
 
 this build is tested on WINDOWS only!
 but should work on linux as well.
